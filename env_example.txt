@@ -1,0 +1,22 @@
+# Database Configuration
+DB_HOST=localhost
+DB_PORT=3306
+DB_NAME=autopost_db
+DB_USER=root
+DB_PASSWORD=your_db_password
+
+# RecentHPost API Configuration
+API_ENDPOINT=http://recenthpost.bakkaz.local/api/posts
+API_KEY=d7J$kLz1p@Gm4xQw9!R6nYb2^T8vEWq0Z*fOj5L&yHgX3rU
+
+# Post Configuration
+USER_ID=11
+CATEGORY_ID=26
+STATE=lagos
+CITY=ajah
+DEVICE=Python Bot 1.0
+COUNTRIES_ISO=NG,US
+
+# Bot Configuration
+TIMEZONE=UTC
+LOG_LEVEL=INFO 
