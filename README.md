@@ -144,19 +144,19 @@ The bot fetches content from multiple random internet APIs:
 
 | Variable | Description | Default |
 |----------|-------------|---------|
-| `DB_HOST` | MySQL host | localhost |
+| `DB_HOST` | MySQL host | 127.0.0.1 |
 | `DB_PORT` | MySQL port | 3306 |
 | `DB_NAME` | Database name | autopost_db |
 | `DB_USER` | Database username | root |
 | `DB_PASSWORD` | Database password | (empty) |
-| `API_ENDPOINT` | RecentHPost API endpoint | http://recenthpost.bakkaz.local/api/posts |
+| `API_ENDPOINT` | Post API endpoint | http://example.com/posts |
 | `API_KEY` | API authentication key | (required) |
-| `USER_ID` | User ID for posts | 11 |
-| `CATEGORY_ID` | Category ID for posts | 7 |
-| `STATE` | Nigerian state | lagos |
-| `CITY` | City name | ajah |
+| `USER_ID` | User ID for posts | 1 |
+| `CATEGORY_ID` | Category ID for posts | 1 |
+| `STATE` | State | California |
+| `CITY` | City name | San Francisco |
 | `DEVICE` | Device info | Python Bot 1.0 |
-| `COUNTRIES_ISO` | Country codes | NG,US |
+| `COUNTRIES_ISO` | Country codes | US |
 | `TIMEZONE` | Bot timezone | UTC |
 | `LOG_LEVEL` | Logging level | INFO |
 
@@ -237,7 +237,7 @@ LOG_LEVEL=DEBUG
 
 The bot integrates with the RecentHPost API using the following structure:
 
-**API Endpoint:** `POST http://recenthpost.bakkaz.local/api/posts`
+**API Endpoint:** `POST http://example.com/posts`
 
 **Authentication:** `x-api-key` header
 
