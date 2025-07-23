@@ -53,21 +53,21 @@ A Python-based bot that runs continuously on a local machine to automate the cre
    Edit `.env` file with your configuration:
    ```env
    # Database Configuration
-   DB_HOST=localhost
+   DB_HOST=127.0.0.1
    DB_PORT=3306
    DB_NAME=autopost_db
    DB_USER=your_username
    DB_PASSWORD=your_password
 
    # RecentHPost API Configuration
-   API_ENDPOINT=http://recenthpost.bakkaz.local/api/posts
-   API_KEY=d7J$kLz1p@Gm4xQw9!R6nYb2^T8vEWq0Z*fOj5L&yHgX3rU
+   API_ENDPOINT=http://example.com/posts
+   API_KEY=****************
 
    # Post Configuration
-   USER_ID=11
-   CATEGORY_ID=7
-   STATE=lagos
-   CITY=ajah
+   USER_ID=1
+   CATEGORY_ID=1
+   STATE=California
+   CITY=San Francisco
    DEVICE=Python Bot 1.0
    COUNTRIES_ISO=NG,US
 
@@ -147,7 +147,7 @@ The bot fetches content from multiple random internet APIs:
 | `DB_HOST` | MySQL host | 127.0.0.1 |
 | `DB_PORT` | MySQL port | 3306 |
 | `DB_NAME` | Database name | autopost_db |
-| `DB_USER` | Database username | root |
+| `DB_USER` | Database username | your_username |
 | `DB_PASSWORD` | Database password | (empty) |
 | `API_ENDPOINT` | Post API endpoint | http://example.com/posts |
 | `API_KEY` | API authentication key | (required) |
