@@ -1,0 +1,24 @@
+[Unit]
+Description=Automated Daily Poster Bot
+After=network.target mysql.service
+Wants=mysql.service
+
+[Service]
+Type=simple
+User=hp
+Group=hp
+WorkingDirectory=/home/hp/Desktop/CODE/Personal/autopost
+Environment=PATH=/home/hp/Desktop/CODE/Personal/autopost/venv/bin
+ExecStart=/home/hp/Desktop/CODE/Personal/autopost/venv/bin/python /home/hp/Desktop/CODE/Personal/autopost/main.py --daemon
+ExecReload=/bin/kill -HUP $MAINPID
+Restart=always
+RestartSec=10
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=autopost-bot
+
+# Environment file
+EnvironmentFile=/home/hp/Desktop/CODE/Personal/autopost/.env.production
+
+[Install]
+WantedBy=multi-user.target 

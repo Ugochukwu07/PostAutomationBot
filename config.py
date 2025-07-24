@@ -1,4 +1,5 @@
 import os
+import sys
 try:
     from dotenv import load_dotenv
 except ImportError:
@@ -6,7 +7,11 @@ except ImportError:
         pass  # Fallback if dotenv is not available
 
 # Load environment variables
-load_dotenv()
+# Check if running in daemon mode and load .env.production
+if '--daemon' in sys.argv:
+    load_dotenv('.env.production')
+else:
+    load_dotenv()
 
 class Config:
     """Configuration class for the Automated Daily Poster Bot"""
