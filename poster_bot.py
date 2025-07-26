@@ -9,6 +9,7 @@ from database import DatabaseManager
 from content_fetcher import ContentFetcher
 from api_client import APIClient
 from scheduler import PostScheduler
+from notifier import send_notification
 
 class AutomatedPosterBot:
     """Main bot class that orchestrates automated posting"""
@@ -205,6 +206,28 @@ class AutomatedPosterBot:
         self.logger.info(f"Executing scheduled {post_type} post")
         
         success = self.make_post(post_type)
+        
+        # Notify result
+        if success:
+            result_msg = f"{post_type} post was successful."
+        else:
+            result_msg = f"{post_type} post failed."
+        # Find next scheduled post
+        jobs = self.scheduler.get_scheduled_jobs()
+        next_job = None
+        for job_info, job_func in jobs:
+            if post_type.lower() in job_info.lower():
+                continue  # skip current
+            next_job = job_info
+            break
+        if next_job:
+            next_msg = f"Next post scheduled: {next_job.split(' - ')[0]}"
+        else:
+            next_msg = "No more posts scheduled today."
+        send_notification(
+            title="Post Result",
+            message=f"{result_msg}\n{next_msg}"
+        )
         
         if success and post_type == "RANDOM":
             # If this was a random post, reschedule remaining posts

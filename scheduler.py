@@ -5,6 +5,7 @@ import logging
 from datetime import datetime, timedelta
 from typing import List, Tuple
 from database import DatabaseManager
+from notifier import send_notification
 
 class PostScheduler:
     """Handles intelligent scheduling of posts throughout the day"""
@@ -104,6 +105,13 @@ class PostScheduler:
             schedule.every().day.at(post_time.strftime("%H:%M")).do(
                 callback_function, post_type="RANDOM"
             ).tag(f"random_post_{i}")
+            # Schedule notification 1 hour before
+            notify_time = (post_time - timedelta(hours=1)).strftime("%H:%M")
+            schedule.every().day.at(notify_time).do(
+                send_notification,
+                title="Upcoming Post",
+                message=f"A RANDOM post is scheduled at {post_time.strftime('%H:%M')}"
+            ).tag(f"notify_random_post_{i}")
     
     def schedule_daily_post(self, callback_function):
         """Schedule the daily 12 PM post"""
@@ -112,6 +120,13 @@ class PostScheduler:
         schedule.every().day.at(self.SCHEDULED_POST_TIME).do(
             callback_function, post_type="SCHEDULED"
         ).tag("daily_post")
+        # Schedule notification 1 hour before daily post
+        notify_time = (datetime.strptime(self.SCHEDULED_POST_TIME, "%H:%M") - timedelta(hours=1)).strftime("%H:%M")
+        schedule.every().day.at(notify_time).do(
+            send_notification,
+            title="Upcoming Post",
+            message=f"A SCHEDULED post is at {self.SCHEDULED_POST_TIME}"
+        ).tag("notify_daily_post")
     
     def clear_all_schedules(self):
         """Clear all scheduled jobs"""
